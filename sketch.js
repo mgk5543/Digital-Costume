@@ -62,28 +62,88 @@ function draw() {
     // as the size of the mask.
     let d = dist(earR.x, earR.y, earL.x, earL.y);
     
-    noFill();
-    stroke(255);
-    strokeWeight(3);
-    arc(earR.x-d/5, earL.y-d*1.7, d*1.4, d*3, TWO_PI, PI, OPEN);
-    
-    strokeWeight(0);
-    fill(255, 255, 255, 70);
-    rectMode(CORNER);
-    rect(earR.x - d/1.4, earL.y -d/2.8, d*2.4, d*1.8);
-    fill(232, 226, 211);
-    rect(earR.x -d/9, earL.y-d/1.4, d*1.2, d/3);
-    ellipseMode(CENTER);
-    arc(earL.x +d/16, earL.y-d/3.5, d*1.5, d/3, -PI/2, PI/2);
-    arc(earR.x-d/16, earL.y-d/3.5, d*1.5, d/3, PI/2, -PI/2);
-    fill(201, 193, 175);
-    arc(earL.x+d/16, earL.y-d/4.2, d*1.3, d/4, -PI/2, PI/2);
-    arc(earR.x-d/16, earL.y-d/4.2, d*1.3, d/4, PI/2, -PI/2);
-    ellipseMode(CORNER);
-    fill(232, 226, 211);
-    arc(earR.x-d/9, earL.y-d*1.2, d*1.2, d, PI, 0);
-    fill(255, 255, 255);
-    arc(earR.x-d/9, earL.y-d*1.2, d*1.2, d*1.5, -2.3, 0);
+    if(dist(pose.nose.x, pose.nose.y, earR.x, earR.y) < d/3){
+
+      strokeWeight(0);
+      fill(0, 0, 0, 80);
+      rectMode(CENTER);
+      arc(earR.x-d/2, pose.nose.y-d*1.5, d*2.1, d*4, PI, TWO_PI);
+      noFill();
+      strokeWeight(d/9);
+      stroke(200, 200, 200);
+      arc(earR.x-d/2, pose.nose.y-d, d*1.5, d*4, PI, TWO_PI);
+      arc(earR.x-d/2, pose.nose.y-d*1.3, d*1.8, d*3.8, PI, TWO_PI);
+      arc(earR.x-d/2, pose.nose.y-d*1.5, d*2.1, d*3.5, PI, TWO_PI);
+      stroke(240, 240, 240);
+      arc(earR.x-d/2, pose.nose.y-d, d*1.5, d*4, 5, 0);
+      arc(earR.x-d/2, pose.nose.y-d*1.3, d*1.8, d*3.8, 5, 0);
+      arc(earR.x-d/2, pose.nose.y-d*1.5, d*2.1, d*3.5, 5, 0);
+      
+      strokeWeight(d/6);
+      stroke(200, 200, 200);
+      arc(earR.x-d/2, pose.nose.y+d/1.7, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/2, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/2.3, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/3, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/5, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/10, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      arc(earR.x-d/2, pose.nose.y-d/50, d*2.1, d/1.5, TWO_PI, PI, OPEN);
+      stroke(240, 240, 240)
+      arc(earR.x-d/2, pose.nose.y+d/1.7, d*2.1, d/1.5, TWO_PI, 1.7, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/2, d*2.1, d/1.5, TWO_PI, 2, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/2.3, d*2.1, d/1.5, TWO_PI, 2.3, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/3, d*2.1, d/1.5, TWO_PI, 2.5, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/5, d*2.1, d/1.5, TWO_PI, 2.65, OPEN);
+      arc(earR.x-d/2, pose.nose.y+d/10, d*2.1, d/1.5, TWO_PI, 2.8, OPEN);
+      arc(earR.x-d/2, pose.nose.y-d/50, d*2.1, d/1.5, TWO_PI, 2.9, OPEN);
+    }
+    else if(dist(pose.nose.x, pose.nose.y, earL.x, earL.y) < d/4){
+      stroke(255);
+      strokeWeight(d/8);
+      fill(0, 0, 0,  70);
+      rect(earL.x-d*1.1, earL.y-d/3.3, d*1.4, d*1.2);
+      quad(earL.x-d*1.18, earL.y-d/3.3, earL.x-d*1.18, earL.y-d/3 + (d*1.2), earL.x-d*1.55, earL.y+d/1.8, earL.x-d*1.55, earL.y-d/3.3);
+      
+      fill(0);
+      strokeWeight(0);
+      rect(earL.x-d*1.15, earL.y-d/3.7, 2, d*1.3);
+      
+      
+      
+      fill(210);
+      strokeWeight(0);
+      triangle(earL.x-d*1.8, earL.y-d/4, earL.x+d/2, earL.y-d/4, earL.x-d/1.4, earL.y-d);
+      fill(255);
+      triangle(earL.x-d, earL.y-d/4, earL.x+d/2, earL.y-d/4, earL.x-d/1.4, earL.y-d);
+      fill(210);
+      arc(earL.x-d*1.3, earL.y-d*1.25, d*1.3, d*1.4, PI, 0);
+      fill(255, 255, 255);
+      arc(earL.x-d*1.3, earL.y-d*1.25, d*1.3, d*1.4, -1.8, -0.2);
+    }
+    else{
+      noFill();
+      stroke(255);
+      strokeWeight(3);
+      arc(earR.x-d/5, earL.y-d*1.7, d*1.4, d*3, TWO_PI, PI, OPEN);
+
+      strokeWeight(0);
+      fill(255, 255, 255, 70);
+      rectMode(CORNER);
+      rect(earR.x - d/1.4, earL.y -d/2.8, d*2.4, d*1.8);
+      fill(232, 226, 211);
+      rect(earR.x -d/9, earL.y-d/1.4, d*1.2, d/3);
+      ellipseMode(CENTER);
+      arc(earL.x +d/16, earL.y-d/3.5, d*1.5, d/3, -PI/2, PI/2);
+      arc(earR.x-d/16, earL.y-d/3.5, d*1.5, d/3, PI/2, -PI/2);
+      fill(201, 193, 175);
+      arc(earL.x+d/16, earL.y-d/4.2, d*1.3, d/4, -PI/2, PI/2);
+      arc(earR.x-d/16, earL.y-d/4.2, d*1.3, d/4, PI/2, -PI/2);
+      ellipseMode(CORNER);
+      fill(232, 226, 211);
+      arc(earR.x-d/9, earL.y-d*1.2, d*1.2, d, PI, 0);
+      fill(255, 255, 255);
+      arc(earR.x-d/9, earL.y-d*1.2, d*1.2, d*1.5, -2.3, 0);
+    }
     
     
     
@@ -113,11 +173,12 @@ function draw() {
       const beeY = animLoop.noise({ radius: radY, seed: seedY }) * ampY
       createBee(beeX, beeY);
     }
-    
-    
-    
-
   }
+  
+  textSize(25);
+  strokeWeight(4);
+  fill(255);
+  text("Look to the left and right to change your hat!", -250, -140);
 }
 
 
